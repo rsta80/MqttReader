@@ -1,18 +1,13 @@
 package es.ugr.mqttreader;
 
 import android.app.ActivityManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -53,7 +48,7 @@ public class ThingSpeakActivity extends AppCompatActivity {
     private String readApiKey = "Y74ZH5MMFTU8EANY",
             channel = "422677",
             field = "2";
-    private Button btn;
+    private Button btn, btn2;
 
 
     Intent mServiceIntent;
@@ -95,6 +90,7 @@ public class ThingSpeakActivity extends AppCompatActivity {
         txtChannel = findViewById(R.id.txt_channel);
         txtField = findViewById(R.id.txt_field);
         btn = findViewById(R.id.btn_parameters);
+        btn2 = findViewById(R.id.btn_broker);
 
         btn.setOnClickListener(new View.OnClickListener() {
 
@@ -107,6 +103,16 @@ public class ThingSpeakActivity extends AppCompatActivity {
 
         txtChannel.setText("Canal: " + channel);
         txtField.setText("Campo: " + field);
+
+        btn2.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ThingSpeakActivity.this, BrockerActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         // Connect to ThinkSpeak Channel
         tsChannel = new ThingSpeakChannel(Integer.parseInt(channel), readApiKey);
@@ -183,7 +189,10 @@ public class ThingSpeakActivity extends AppCompatActivity {
                                         Double distancia = mLastValue.execute(channel, field, readApiKey).get();
                                         if (distancia < 50) {
                                             // Create an explicit intent for an Activity in your app
-                                            showNotification();
+                                            Log.i("ThingSpeak","Distancia muy corta");
+                                            Toast.makeText(ThingSpeakActivity.this,
+                                                    "Distancia muy corta:\n"+ distancia,
+                                                    Toast.LENGTH_LONG).show();
                                         }
                                     } catch (InterruptedException e) {
                                         e.printStackTrace();
@@ -207,21 +216,7 @@ public class ThingSpeakActivity extends AppCompatActivity {
 
     }
 
-    public void showNotification() {
-        PendingIntent pi = PendingIntent.getActivity(this, 0, new Intent(this, ThingSpeakActivity.class), 0);
-        Resources r = getResources();
-        Notification notification = new NotificationCompat.Builder(this)
-                .setTicker("Distancia Telemetro")
-                .setSmallIcon(android.R.drawable.ic_menu_report_image)
-                .setContentTitle("Distancia Telemetro")
-                .setContentText("La medida de la distancia tomada es muy corta")
-                .setContentIntent(pi)
-                .setAutoCancel(true)
-                .build();
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
-    }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);

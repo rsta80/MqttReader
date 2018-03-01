@@ -59,7 +59,7 @@ public class GetLastValueService extends Service {
     public void initializeTimerTask() {
         timerTask = new TimerTask() {
             public void run() {
-                Log.i("in timer", "in timer ++++  "+ (counter++));
+
             }
         };
     }

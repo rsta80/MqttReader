@@ -6,6 +6,10 @@
     android:layout_height="match_parent"
     tools:context="es.ugr.mqttreader.ThingSpeakActivity">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -140,6 +144,7 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/cd3"
             android:layout_below="@+id/cd1"
             android:layout_margin="5dp"
             app:cardCornerRadius="5dp"
@@ -179,8 +184,52 @@
 
         </android.support.v7.widget.CardView>
 
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cd3"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="2dp"
+            app:contentPadding="16dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txt_titl4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"
+                    android:text="Elejir Broker"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <Button
+                    android:id="@+id/btn_broker"
+                    style="@android:style/Widget.Holo.Button"
+                    android:background="@color/colorPrimary"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_titl4"
+                    android:layout_centerHorizontal="true"
+                    android:elevation="4dp"
+                    android:text="Broker"
+                    android:textAppearance="@style/TextAppearance.AppCompat" />
+
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.CardView>
+
 
     </RelativeLayout>
+
+    </ScrollView>
 
 
 </android.support.design.widget.CoordinatorLayout>

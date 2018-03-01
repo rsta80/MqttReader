@@ -42,6 +42,10 @@
         <activity
             android:name=".NewChannel"
             android:label="@string/title_activity_new_channel"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".BrockerActivity"
+            android:label="@string/title_activity_brocker"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
