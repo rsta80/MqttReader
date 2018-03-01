@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorSplashBackground">#2a3b4f</color>
     <color name="white">#fdfdfe</color>
+    <color name="colorBackground">#ececed</color>
+    <color name="graphPoints">#D32F2F</color>
+    <color name="facebook">#5054b3</color>
+
 </resources>
